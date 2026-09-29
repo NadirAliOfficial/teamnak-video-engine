@@ -5,7 +5,7 @@ mouth.npy
 list.txt
 seg*.mp4
 still_*.png
-teamnak-explainer-*.mp4
+/teamnak-explainer-*.mp4
 # downloaded by build.sh
 kokoro-v1.0.onnx
 voices-v1.0.bin
