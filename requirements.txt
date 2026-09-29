@@ -1,0 +1,4 @@
+skia-python
+numpy
+soundfile
+kokoro-onnx
