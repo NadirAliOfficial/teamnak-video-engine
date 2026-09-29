@@ -7,6 +7,7 @@ cd "$(dirname "$0")"
 [ -f voices-v1.0.bin ]  || curl -L -o voices-v1.0.bin https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
 mkdir -p fonts/higgsfield fonts/dejavu
 [ -f fonts/higgsfield/Montserrat-ExtraBold.ttf ] || curl -L -o fonts/higgsfield/Montserrat-ExtraBold.ttf https://raw.githubusercontent.com/JulietaUla/Montserrat/master/fonts/ttf/Montserrat-ExtraBold.ttf
+[ -f fonts/higgsfield/Inter-Bold.ttf ] || (curl -L -o /tmp/inter.zip https://github.com/rsms/inter/releases/download/v4.0/Inter-4.0.zip && unzip -j -o /tmp/inter.zip extras/ttf/Inter-Bold.ttf -d fonts/higgsfield)
 # DejaVu fonts: copy from your system (Linux: /usr/share/fonts/truetype/dejavu) into fonts/dejavu
 export FD="$(pwd)/fonts/"
 # 2) voice (skip if you replaced v0.wav..v8.wav with your own recordings)

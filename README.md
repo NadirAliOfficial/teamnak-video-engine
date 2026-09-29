@@ -4,13 +4,13 @@ A programmatic explainer video: every frame, sound and voice line is generated b
 
 **[▶ Watch it and see the project page](https://nadiraliofficial.github.io/teamnak-video-engine/)**
 
-<video src="https://github.com/NadirAliOfficial/teamnak-video-engine/raw/main/assets/teamnak-trading-bot-explainer.mp4" poster="https://github.com/NadirAliOfficial/teamnak-video-engine/raw/main/assets/poster.jpg" controls muted width="100%"></video>
+<video src="https://github.com/NadirAliOfficial/teamnak-video-engine/raw/main/assets/teamnak-explainer-website.mp4" poster="https://github.com/NadirAliOfficial/teamnak-video-engine/raw/main/assets/poster.jpg" controls muted width="100%"></video>
 
 If the player above does not load, here is a silent preview. Click it for the full video with sound.
 
 [![Team NAK explainer preview](assets/preview.gif)](https://nadiraliofficial.github.io/teamnak-video-engine/)
 
-The rendered video is `assets/teamnak-trading-bot-explainer.mp4` (1920×1080, 60 fps, 54 seconds).
+The rendered video is `assets/teamnak-explainer-website.mp4` (1920×1080, 60 fps, 60 seconds).
 
 ## How it works
 
@@ -30,7 +30,7 @@ Python 3.10+ and FFmpeg, then:
 pip install -r requirements.txt
 ```
 
-`build.sh` downloads the Kokoro voice model and the Montserrat heading font on the first run. Copy the DejaVu fonts from your system (on Linux, `/usr/share/fonts/truetype/dejavu`) into `fonts/dejavu`.
+`build.sh` downloads the Kokoro voice model, the Montserrat heading font and the Inter wordmark font on the first run. Copy the DejaVu fonts from your system (on Linux, `/usr/share/fonts/truetype/dejavu`) into `fonts/dejavu`.
 
 ## Build
 
@@ -52,7 +52,7 @@ Record each line of `LINES` in `tl.py` as `v0.wav` ... `v8.wav` (one file per li
 
 ## Brand tokens (`render.py`)
 
-Green `#22C55E`, background `#090E0C`, panel `#101915`, text `#F2F5F3`, muted `#8B9A92`. Fonts: Montserrat ExtraBold (headings), DejaVu Sans / Mono (body, code).
+Green `#3FCB90`, background `#0C0E13`, panel `#11151C`, text `#F2F5F3`, muted `#8B9A92`. Fonts: Inter Bold (Team NAK wordmark), Montserrat ExtraBold (headings), DejaVu Sans / Mono (body, code).
 
 ## Notes
 

@@ -6,13 +6,13 @@ HF=FD+'higgsfield/Montserrat-ExtraBold.ttf'
 if not os.path.exists(HF): HF=FD+'dejavu/DejaVuSans-Bold.ttf'
 TF={'h':skia.Typeface.MakeFromFile(HF),'b':skia.Typeface.MakeFromFile(FD+'dejavu/DejaVuSans.ttf'),
 'bb':skia.Typeface.MakeFromFile(FD+'dejavu/DejaVuSans-Bold.ttf'),'m':skia.Typeface.MakeFromFile(FD+'dejavu/DejaVuSansMono.ttf'),
-'mb':skia.Typeface.MakeFromFile(FD+'dejavu/DejaVuSansMono-Bold.ttf')}
+'mb':skia.Typeface.MakeFromFile(FD+'dejavu/DejaVuSansMono-Bold.ttf'),'lg':skia.Typeface.MakeFromFile(FD+'higgsfield/Inter-Bold.ttf')}
 FC={}
 def F(k,s):
     s=int(s)
     if (k,s) not in FC: FC[(k,s)]=skia.Font(TF[k],s)
     return FC[(k,s)]
-G='#22C55E';WH='#F2F5F3';MU='#8B9A92';RD='#EF4444';PN='#101915';LN='#22352C';DK='#062016'
+G='#3FCB90';WH='#F1F3F6';MU='#8B9A92';RD='#EF4444';PN='#11151C';LN='#252C38';DK='#07251A'
 def P(h,a=1.0,sw=0):
     h=h.lstrip('#'); a=max(0.0,min(1.0,a))
     p=skia.Paint(AntiAlias=True,Color=skia.Color(int(h[0:2],16),int(h[2:4],16),int(h[4:6],16),int(a*255)))
@@ -33,6 +33,12 @@ def tx(c,s,x,y,k,sz,col=WH,a=1.0,al='l'):
     if al=='c': x-=w/2
     elif al=='r': x-=w
     c.drawString(s,x,y,f,P(col,a)); return w
+def logo(c,x,y,sz,a=1.0,al='l',glow=0.0):
+    f=F('lg',sz); w1=f.measureText("Team"); sp=f.measureText(" ")*0.9; w=w1+sp+f.measureText("NAK")
+    if al=='c': x-=w/2
+    if glow>0:
+        gp=P(G,glow*a); gp.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle,sz*0.12)); c.drawString("Team",x,y,f,gp)
+    c.drawString("Team",x,y,f,P(G,a)); c.drawString("NAK",x+w1+sp,y,f,P(WH,a)); return w
 def rr(c,l,t,r,b,rad,p): c.drawRRect(skia.RRect.MakeRectXY(skia.Rect.MakeLTRB(l,t,r,b),rad,rad),p)
 def panel(c,l,t,r,b,a=1):
     rr(c,l,t,r,b,18,P(PN,0.92*a)); rr(c,l,t,r,b,18,P(LN,a,2))
@@ -44,11 +50,11 @@ def head(c,s,x,y,a,sz=64):
         c.drawString(wd,x,y+(1-g)*22,f,P(WH,a*g)); x+=f.measureText(wd)+sp
 def sub(c,s,x,y,a,sz=32): tx(c,s,x,y,'b',sz,MU,a)
 def mkbg():
-    s=skia.Surface(W,H); c=s.getCanvas(); c.clear(skia.Color(9,14,12))
-    gp=P('#16241D',0.8,1)
+    s=skia.Surface(W,H); c=s.getCanvas(); c.clear(skia.Color(12,14,19))
+    gp=P('#181D26',0.8,1)
     for x in range(0,W+1,60): c.drawLine(x,0,x,H,gp)
     for y in range(0,H+1,60): c.drawLine(0,y,W,y,gp)
-    p=skia.Paint(AntiAlias=True); p.setShader(skia.GradientShader.MakeRadial(skia.Point(1150,470),950,[skia.Color(34,197,94,42),skia.Color(34,197,94,0)]))
+    p=skia.Paint(AntiAlias=True); p.setShader(skia.GradientShader.MakeRadial(skia.Point(1150,470),950,[skia.Color(63,203,144,36),skia.Color(63,203,144,0)]))
     c.drawRect(skia.Rect.MakeWH(W,H),p)
     p2=skia.Paint(AntiAlias=True); p2.setShader(skia.GradientShader.MakeRadial(skia.Point(W/2,H/2),1250,[skia.Color(0,0,0,0),skia.Color(0,0,0,170)]))
     c.drawRect(skia.Rect.MakeWH(W,H),p2)
@@ -152,17 +158,17 @@ def s1(c,t):
     cx,cy=1735,200; c.drawCircle(cx,cy,40,P(WH,0.8,4))
     for ang,ln in ((u*7,30),(u*0.6,20)): c.drawLine(cx,cy,cx+ln*math.sin(ang),cy-ln*math.cos(ang),P(WH,0.9,4))
 def s2(c,t):
-    u=t-SS[2]; cx,cy=1160,430; g=sm(u,0.1,0.9)
-    c.drawCircle(cx,cy,175,P(G,0.10*g))
-    c.drawArc(skia.Rect.MakeLTRB(cx-150,cy-150,cx+150,cy+150),-90,360*g,False,GL(G,0.7,16,14))
-    c.drawArc(skia.Rect.MakeLTRB(cx-150,cy-150,cx+150,cy+150),-90,360*g,False,P(G,1,9))
-    for j in range(3):
-        q=cl((u-0.9-j*0.18)/1.0)
-        if 0<q<1: c.drawCircle(cx,cy,150+q*260,P(G,(1-q)*0.5,3))
-    tx(c,"TN",cx,cy+44,'h',128,WH,sm(u,0.5,0.9),'c')
-    a=sm(u,0.8,1.3); f=F('h',92); s="TEAM NAK"; sp=14; w=sum(f.measureText(ch) for ch in s)+sp*(len(s)-1); x=cx-w/2
-    for ch in s: c.drawString(ch,x,cy+280,f,P(WH,a)); x+=f.measureText(ch)+sp
-    tx(c,"Trading strategies  \u2192  automated systems",cx,cy+345,'b',36,MU,sm(u,1.4,1.9),'c')
+    u=t-SS[2]; cx,cy=1160,500; f=F('lg',170)
+    wT=f.measureText("Team"); sp=f.measureText(" ")*0.9; wN=f.measureText("NAK"); w=wT+sp+wN; x0=cx-w/2
+    gT=sm(u,0.15,0.75); gN=sm(u,0.4,0.95)
+    c.drawOval(skia.Rect.MakeLTRB(cx-w*0.6,cy-190,cx+w*0.6,cy+60),GL(G,0.14*gT,0,70))
+    gp=GL(G,0.55*gT,0,20); c.drawString("Team",x0-(1-gT)*90,cy,f,gp); c.drawString("Team",x0-(1-gT)*90,cy,f,P(G,gT))
+    c.drawString("NAK",x0+wT+sp+(1-gN)*90,cy,f,P(WH,gN))
+    g=sm(u,0.8,1.5)
+    if g>0:
+        c.drawLine(x0,cy+50,x0+w*g,cy+50,GL(G,0.6,10)); c.drawLine(x0,cy+50,x0+w*g,cy+50,P(G,1,4))
+        c.drawCircle(x0+w*g,cy+50,7,P(WH,1-sm(u,1.4,1.7)))
+    tx(c,"Trading strategies  \u2192  automated systems",cx,cy+125,'b',36,MU,sm(u,1.4,1.9),'c')
 CARDS=[("MT4 / MT5","Expert Advisors"),("IBKR API","Interactive Brokers bots"),("Crypto Bots","Exchange API automation")]
 def s3(c,t):
     head(c,"Built for your platform.",540,215,1)
@@ -297,7 +303,7 @@ def s7(c,t):
             tx(c,"client rating",cx,y+350,'b',34,MU,g,'c')
 def s8(c,t):
     u=t-SS[8]; a=sm(u,0.1,0.5)
-    c.drawCircle(860,330,40,P(G,a,5)); tx(c,"TN",860,343,'h',34,WH,a,'c')
+    logo(c,800,370,52,a,glow=0.4)
     head(c,"Send us your strategy.",800,470,sm(u,0.2,0.7),68)
     sub(c,"We'll show you exactly how we'd build it.",800,535,sm(u,0.5,1.0),36)
     g=bo((t-BTN_T)/0.5)
@@ -325,7 +331,7 @@ def subs(c,t):
 def wm(c,t):
     a=sm(t,SS[2]+1.5,SS[2]+2.2)*(1-sm(t,SS[NS-1],SS[NS-1]+0.4))
     if a<=0: return
-    c.drawCircle(78,66,24,P(G,a,4)); tx(c,"TN",78,74,'h',20,WH,a,'c'); tx(c,"TEAM NAK",116,75,'h',24,WH,a)
+    logo(c,56,76,32,a)
 _pr=np.random.default_rng(11); PT=list(zip(_pr.uniform(0,W,70),_pr.uniform(0,H,70),_pr.uniform(8,30,70),_pr.uniform(1.2,3.2,70),_pr.uniform(0,6.28,70)))
 def parts(c,t):
     for x0,y0,sp,sz,ph in PT:
