@@ -13,3 +13,9 @@ fonts/
 __pycache__/
 .venv/
 .DS_Store
+/ibkr_fiverr/output/
+/nadir_ibkr_v2/output/
+/nadir_ibkr_v2/assets/*_page.html
+/nadir_ibkr_v2/assets/*_media.zip
+/ibkr_fiverr_v3/output/
+/teamnak_linkedin/output/
