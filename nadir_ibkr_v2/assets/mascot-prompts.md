@@ -1,0 +1,11 @@
+# Custom mascot prompts
+
+Mode: built-in ImageGen. Both outputs are transparent PNG files copied into this project. The second output edits the first to preserve character identity.
+
+## Initial character
+
+Create one premium 3D mascot asset for a sophisticated freelance trading-bot developer's explainer video. A charming small floating robot trading assistant, full body visible, large rounded graphite-black helmet/head with a glossy smoked glass faceplate, two luminous mint-green expressive friendly eyes, a gentle tiny mint smile, satin titanium silver trim and mint-green accent lights, compact softly rounded dark torso, two short arms with rounded mitten hands, short rounded legs with polished boots. One hand raised in a confident friendly wave, the other relaxed open at its side. Three-quarter view facing slightly toward camera left, inviting approachable smart personality. High-end Pixar-quality product-character rendering, physically based brushed metal and soft touch black materials, impeccable soft studio lighting with mint rim highlights. Elegant simple silhouette readable at 300px height, charming but professional fintech style. Color palette deep graphite #10191c, titanium silver, luminous mint #51e7a0 only. Entire character fully in frame with generous transparent margin around all sides. Isolated on genuinely transparent background. No platform underneath, no background, no props, no chart, no text, no lettering, no logos, no watermark. One character only, not a sprite sheet. Asset will be composited onto cream and dark navy motion graphics. Output square high resolution.
+
+## Presenter pose
+
+Edit the reference mascot into a second consistent pose for the same premium trading-bot video. Preserve exactly this robot's identity, graphite glass helmet, expressive mint eyes, brushed titanium trim, dark torso, materials, proportions and lighting. Full body isolated on genuinely transparent background. Change the waving arm to a helpful presenter pose pointing toward the left side of the image with an open hand, as if introducing a chart beside it. Head turned slightly toward that pointing hand, attentive cheerful smile. Other arm resting slightly outward. Keep both feet visible and generous transparent margin. No text, no logos, no props, no background, no floor plane, no duplicate characters. Output square high resolution.
